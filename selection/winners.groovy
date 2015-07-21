@@ -23,7 +23,7 @@ Response response = client.get(request)
 
 List issues = new JsonSlurper().parseText(response.contentAsString)
 
-def winners = issues.collect { issue ->
+List winners = issues.collect { issue ->
   [
     number: issue.number, 
     created_at: issue.created_at, 
@@ -34,9 +34,10 @@ def winners = issues.collect { issue ->
   issue.labels.size()
 }.reverse().take(7)
 
-String[] tHeaders = ['User', 'IssueId', '# Votes'].toArray()
+String[] tHeaders = ['User', 'IssueId', '# Votes', 'Voters'].toArray()
 String[][] data = winners.collect {
-  [it.user, it.number.toString(), it.labels.size().toString()].toArray()
+  String voters = it.labels.collect { it.name - '_vote' }.sort().join(', ')
+  [it.user, it.number.toString(), it.labels.size().toString(), voters].toArray()
 }.toArray()
 
 println FlipTableConverters.fromObjects(tHeaders, data)
