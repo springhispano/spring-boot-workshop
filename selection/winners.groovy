@@ -13,6 +13,11 @@ if (!args) {
 }
 String token = args[0]
 
+Integer top = 7
+if(args.size() > 1) {
+  top = new Integer(args[1])
+}
+
 RESTClient client = new RESTClient('https://api.github.com')
 Map request = [
   path: '/repos/springhispano/spring-boot-workshop/issues', 
@@ -32,7 +37,7 @@ List winners = issues.collect { issue ->
   ]
 }.sort { issue ->
   issue.labels.size()
-}.reverse().take(7)
+}.reverse().take(top)
 
 String[] tHeaders = ['User', 'IssueId', '# Votes', 'Voters'].toArray()
 String[][] data = winners.collect {
