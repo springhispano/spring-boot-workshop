@@ -9,3 +9,10 @@ spring.datasource:
   url: jdbc:postgresql://localhost:5432/taller
   username: sboot
   password: secreto
+
+---
+spring.profiles: oscarRabbit
+spring.rabbitmq:
+  host: 192.168.15.6
+  username: guest
+  password: guest

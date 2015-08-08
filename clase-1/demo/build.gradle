@@ -55,6 +55,13 @@ dependencies {
 
   compile('com.domingosuarez:oneltico:0.1.2')
 
+  compile("org.springframework.cloud:spring-cloud-starter-hystrix:1.0.3.RELEASE")
+  compile 'com.netflix.hystrix:hystrix-javanica:1.4.14'
+
+  compile 'com.netflix.archaius:archaius-core:0.6.6'
+
+  compile 'com.github.groovy-wslite:groovy-wslite:1.1.2'
+
   runtime 'org.postgresql:postgresql:9.4-1201-jdbc41'
   runtime 'org.flywaydb:flyway-core:3.2.1'
 
